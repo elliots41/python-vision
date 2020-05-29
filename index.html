@@ -1,0 +1,81 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<h1>Computer Vision, CS34110</h1>
+<p>The vast majority of the materials and resources for this module are on the 
+<a href="https://blackboard.aber.ac.uk/">Blackboard</a> site. However, that platform is not very good at displaying interactive webpages, and I have come across (and/or written:-) a handful of useful demonstrations which use JavaScript to highlight computer vision concepts. These I will collect here.</p>
+<h2>Python based OpenCV code samples</h2>
+<p>There are various demos and videos I've used during the module and as I go I'll also put the code up here. Most of these are basically hacks of the OpenCV sample code - they're just demos of standard methods, after all.</p>
+<p>To use these: </p>
+<ol>
+<li>Install OpenCV with Python support and the samples</li>
+<li>Copy (from the samples/python2 directory) video.pyc video.py common.pyc and common.py to your 341 directory </li>
+<li>Put the python files below in the same directory</li>
+<li>Look at the comments of my hacky stuff to see what it takes in terms of parameters (it will either take none, or an image filename, probably!)</li>
+<li>You can download the whole lot here as a .tgz file: <a href = "demos.tgz">demos.tgz</a></li>
+</ol>
+<a name="opencv"></a>
+<h1>Generic opencv</h1>
+<ul>
+<li><a href = "videoplay.py">videoplay.py</a> is a basic minimal camera reader</li>
+<li><a href = "draw.py">draw.py</a> shows some drawing functions</li>
+<li><a href = "brightness.py">brightness.py</a> gives you brighter images</li>
+</ul>
+
+<a name="edges"></a>
+<h1>Edge detection, and edge grouping</h1>
+<ul>
+<li><a href = "edge.py">edge.py</a>: Canny edge detection; takes webcam input, detects and draws Canny edges on it. Parameters as trackbars.</li>
+<li><a href = "sobel.py">sobel.py</a>: This takes the webcam input then does Sobel in the x, Sobel in the y, and Sobel in both. Warning: if you do Sobel-X and Sobel-Y on a normal webcam which is pointing at your face, your face looks really strange in the output.</li>
+<li><a href = "dog.py">dog.py</a>: experimenting with difference of Gaussians; does blurs, and takes one blur away from another.</li>
+<li>An interactive demonstration of the Hough Transform: <a href="http://www.aber.ac.uk/~dcswww/Dept/Teaching/CourseNotes/current/CS34110/hough.html">hough.html</a> written in JavaScript</li>
+<li><a href = "houghcircles.py">houghcircles.py</a>: circular Hough transform; takes webcam input, finds and draws circles, parameters as trackbars.</li>
+</ul>
+<a name="features"></a>
+<h1>Feature and corner detection</h1>
+<ul>
+<li><a href = "harris.py">harris.py</a>: a super-basic demo of the Harris corner detector. Takes a single image file, detects and draws the Harris corners on it.</li>
+<li><a href = "klt.py">klt.py</a>: a super-basic demo of the KLT interest point detector. Takes a single image file, detects and draws the KLT features on it.</li>
+<li><a href = "orb.py">orb.py</a>: a super-basic demo of the ORB interest point detector. Takes a single image file, detects and draws the ORB features on it.</li>
+</ul>
+
+<h2>Non-free features...</h2>
+<p>You can install some very popular and common non-free features in opencv if you want. Note: <b>these aren't installed on the uni machines so won't work in the delph</b>.</p>
+<ul>
+<li><a href = "sift.py">sift.py</a>: a super-basic demo of the SIFT interest point detector. Takes a single image file, detects and draws the SIFT features on it. </li>
+<li><a href = "surf.py">surf.py</a>: a super-basic demo of the SURF interest point detector. Takes a single image file, detects and draws the SURF features on it. </li>
+</ul>
+<a name = "objects"></a>
+<h1>Objects</h1>
+<ul>
+<li><a href = "facedetect.py">facedetect.py</a> which also needs <a href = "haarcascade_frontalface_default.xml">haarcascade_frontalface_default.xml</a>. This is the Viola-Jones face detector. You might also want to look inside the Haar cascade file.</li>
+<li><a href = "https://introlab.github.io/find-object/">find-object</a> is on github, but is easy to install on the linux machines in the delph.  Here are the commands I typed, in order... </li>
+<pre>
+cd introlab-find-object-1f44524/
+cmake .
+make
+cd bin/
+./find_object
+</pre>
+</ul>
+<a name="bgsub"></a>
+<h1>Background subtraction</h1>
+<ul>
+<li><a href = "background-simple.py">background-simple.py</a>: a basic demo of single-frame background subtraction, allows you to vary the threshold</li>
+<li><a href = "background-movingaverage.py">background-movingaverage.py</a>: a demo of moving average background subtraction, allows you to vary the threshold and the size of the framebuffer used to generate the moving average. shows input, background model (average image) and output of subtraction</li>
+<li><a href = "mog.py">mog.py</a>: a demo of mixture of Gaussians background subtraction, automatic model order (number of Gaussians) and shadow detection switched on. Program shows input, a visualisation of the background model (average image) and output of subtraction, shadows in grey</li>
+</ul>
+<a name="featuretracks"></a>
+<h1>Feature tracking</h1>
+<ul>
+<li><a href = "optical_flow_farneback.py">optical_flow_farneback.py</a> shows Farneback's optical flow calculations - a dense method - using the OpenCV sample code pretty much out of the box. This is interesting to play with, but slow...</li>
+<li><a href= "lk_track.py">lk_track.py</a> is a demo of the KLT/Lucas Kanade/KLTS tracker; it not only finds the points, but then finds a similar point in the next frame (and the next and so on) giving you "tracklets" that you can then follow across the scene</li>
+</ul>
+<p>I am not a python guru (by anyone's measure) - usually I code in c++. I've gone for Python here as I have been told that installing c++ OpenCV on Windows is terrible, but python is OK, and these are just simple demos for you to play with. </p>
+
+
+<p>Note - the <a href="https://www.facebook.com/groups/1474424396166844/">Facebook Group</a> will also be used for linking online demos, and I will link to the materials here from Blackboard, too. So you don't need to watch this page, it's just a repository.</p>
+
+
+
+</div></body></html>
